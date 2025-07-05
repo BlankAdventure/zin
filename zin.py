@@ -56,6 +56,10 @@ def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: 
         List of components properly arranged in transmission line lumped model
         order.
     '''
+    r0 = handle_units(r0)
+    l0 = handle_units(l0)
+    g0 = handle_units(g0)
+    c0 = handle_units(c0)
     
     a = L / num_blocks
     single_blk = [('rs',r0*a),('ls',l0*a),('rp',1/(g0*a)),('cp',c0*a)]

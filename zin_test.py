@@ -98,8 +98,8 @@ class Tests_zin(unittest.TestCase):
     def test_build_tline_quarter(self):
         R = 1e-8 
         G = 1e-8 
-        L = 25*1e-8; 
-        C = 1*1e-10;
+        L = '250n'
+        C = '100p'
         l = 20*(3/4)
         freq = 10e6
         n = 1000
