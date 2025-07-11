@@ -34,6 +34,8 @@ def combine_series(z1: complex, z2: complex) -> complex:
 
 def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: float) -> list[tuple[str,float]]:
     '''    
+    Builds a component list consisting of multiple segments of the transmission
+    line lumped element model. 
 
     Parameters
     ----------
@@ -46,7 +48,7 @@ def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: 
     l0 : float
         per-unit inductance [H/m].
     g0 : float
-        per-unit conductance [mohs/m].
+        per-unit conductance [mho/m].
     c0 : float
         per-unit capacitance [F/m].
 
@@ -68,7 +70,9 @@ def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: 
 
 def calc_zin(component_list: list[tuple[str,float]], freq: float, load: complex) -> complex:
     '''    
-
+    Calculates the input impedance of the network specified by component_list
+    when presented with load at frequency freq [Mhz].
+    
     Parameters
     ----------
     component_list : list[tuple[str,float]]
