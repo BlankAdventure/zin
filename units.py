@@ -6,6 +6,9 @@ Created on Fri Jul  4 18:16:40 2025
 """
 
 import re
+from typing import TypeAlias
+
+Unit: TypeAlias = str|float|int
 
 suffixes = {'G': 1e9,
             'M': 1e6,
@@ -18,7 +21,7 @@ suffixes = {'G': 1e9,
             'p': 1e-12}
 
 valid_units = "".join(suffixes.keys())
-
+regex = rf"^(?:(\d+\.\d+|\d+|\.\d+))([{valid_units}])$"
 
 def decode_unit(text: str) -> float:
     '''Takes a string and checks it contains a valid float followed by a single
@@ -31,7 +34,7 @@ def decode_unit(text: str) -> float:
     # Group 2: ([a-zA-Z]) - Matches the single trailing character
     #regex = r"^(?:(\d+\.\d+|\d+|\.\d+))([a-zA-Z])$"
 
-    regex = rf"^(?:(\d+\.\d+|\d+|\.\d+))([{valid_units}])$"
+    
     match = re.match(regex, text)
 
     if match:
@@ -42,7 +45,7 @@ def decode_unit(text: str) -> float:
         raise ValueError(f'{text} <--invalid component specification!')
 
 
-def handle_units(str_or_num: str|float|int) -> float:
+def handle_units(unit: Unit) -> float:
     '''
     The main function for dealing with units. If a numeric value is passed in
     it simply returns this value. If a string is passed in, it calls
@@ -64,11 +67,11 @@ def handle_units(str_or_num: str|float|int) -> float:
         The numeric value (either decoded or passed through)
 
     '''
-    match str_or_num:
+    match unit:
         case float() | int():
-            return str_or_num
+            return unit
         case str():
-            return decode_unit(str_or_num)
+            return decode_unit(unit)
         case _:
             raise TypeError('Must be a a float or string')
 

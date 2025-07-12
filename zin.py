@@ -6,7 +6,7 @@ Created on Fri May 23 18:23:34 2025
 """
 
 import numpy as np
-from units import handle_units
+from units import handle_units, Unit
 
 def calc_capacitive_reactance(c: float, f: float) -> complex:
     '''
@@ -32,7 +32,7 @@ def combine_series(z1: complex, z2: complex) -> complex:
     '''    
     return z1 + z2
 
-def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: float) -> list[tuple[str,float]]:
+def build_tline(num_blocks: int, L: float, r0: Unit, l0: Unit, g0: Unit, c0: Unit) -> list[tuple[str,float]]:
     '''    
     Builds a component list consisting of multiple segments of the transmission
     line lumped element model. 
@@ -68,7 +68,7 @@ def build_tline(num_blocks: int, L: float, r0: float, l0: float, g0: float, c0: 
     return single_blk*num_blocks
 
 
-def calc_zin(component_list: list[tuple[str,float]], freq: float, load: complex) -> complex:
+def calc_zin(component_list: list[tuple[str,Unit]], freq: float, load: complex) -> complex:
     '''    
     Calculates the input impedance of the network specified by component_list
     when presented with load at frequency freq [Mhz].

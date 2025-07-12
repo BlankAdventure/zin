@@ -20,19 +20,19 @@ from zin import (
 import units as units
 
 class Tests_units(unittest.TestCase):
-    def test_valid(self):
+    def test_valid_units(self):
         inputs = ['30n','.1m','0.25k']
         expected = [3e-8, 0.0001, 250]        
         for (a,b) in zip(inputs, expected):
             result = units.decode_unit(a)
             self.assertAlmostEqual(result,b,places=8)
 
-    def test_invalid(self):        
+    def test_invalid_units(self):        
         invalid_inputs = ['3b','0.1','M','0.34km', '-0.15M']
         for test in invalid_inputs:
             self.assertRaises(ValueError, units.decode_unit, test )
             
-    def test_handle(self):
+    def test_handle_units(self):
         result = units.handle_units('15.5m') #valid input
         self.assertEqual(result,0.0155)
 
