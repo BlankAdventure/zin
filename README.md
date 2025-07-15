@@ -1,0 +1,1 @@
+The files here contain code for calculating the input impedance to an arbitrary, lumped-element transmission-line-style model, under an arbitrary load termination. This in and of itself is not that interesting; my main purpose for this repo is as a basis for various LLM coding experiments/tasks/challenges. E.g., to experiment with bug fixes, new features, etc.
